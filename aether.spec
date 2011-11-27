@@ -1,6 +1,6 @@
 Name:           aether
 Version:        1.11
-Release:        2
+Release:        4
 Summary:        Sonatype library to resolve, install and deploy artifacts the Maven way
 
 Group:          Development/Java
