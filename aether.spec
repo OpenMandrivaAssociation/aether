@@ -1,16 +1,18 @@
 %{?_javapackages_macros:%_javapackages_macros}
-%global vertag M4
+%global vertag v20140518
 
 Name:           aether
 Epoch:          1
-Version:        0.9.0
-Release:        0.5.%{vertag}.0%{?dist}
+Version:        1.0.0
+Release:        3%{?dist}
 Summary:        Library to resolve, install and deploy artifacts the Maven way
 License:        EPL
 URL:            http://eclipse.org/aether
 BuildArch:      noarch
 
 Source0:        http://git.eclipse.org/c/%{name}/%{name}-core.git/snapshot/%{name}-%{version}.%{vertag}.tar.bz2
+
+Patch1:         0001-Revert-Bug-433953-Remove-support-for-Plexus-IoC-fram.patch
 
 BuildRequires:  maven-local
 BuildRequires:  mvn(com.google.inject:guice::no_aop:)
@@ -127,6 +129,7 @@ for Aether.
 
 %prep
 %setup -q -n %{name}-%{version}.%{vertag}
+%patch1 -p1
 
 # Remove clirr plugin
 %pom_remove_plugin :clirr-maven-plugin
@@ -180,6 +183,21 @@ rm -rf aether-transport-http/src/test
 %doc epl-v10.html notice.html
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 1:1.0.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
+* Wed May 21 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1:1.0.0-2
+- Bring back Plexus support
+
+* Tue May 20 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1:1.0.0-1
+- Update to upstream version 1.0.0
+
+* Tue Apr  1 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1:0.9.1-1
+- Update to upstream version 0.9.1
+
+* Thu Feb 27 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1:0.9.0-1
+- Update to upstream version 0.9.0
+
 * Mon Jan  6 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 1:0.9.0-0.5.M4
 - Update to upstream version 0.9.0.M4
 - Remove workaround for rhbz#911365
@@ -278,3 +296,4 @@ rm -rf aether-transport-http/src/test
 
 * Mon Oct 11 2010 Stanislav Ochotnicky <sochotnicky@redhat.com> - 1.7-1
 - Initial Package
+
