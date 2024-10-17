@@ -7,7 +7,7 @@ Version:        1.0.0
 Release:        3%{?dist}
 Summary:        Library to resolve, install and deploy artifacts the Maven way
 License:        EPL
-URL:            http://eclipse.org/aether
+URL:            https://eclipse.org/aether
 BuildArch:      noarch
 
 Source0:        http://git.eclipse.org/c/%{name}/%{name}-core.git/snapshot/%{name}-%{version}.%{vertag}.tar.bz2
